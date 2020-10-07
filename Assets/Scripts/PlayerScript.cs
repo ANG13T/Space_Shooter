@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public Transform target;
     public GameObject playerClouds;
     public GameObject canvas;
+    public GameObject cam;
     public float bulletMagnitude;
     private Vector2 screenBounds;
 
@@ -36,17 +37,19 @@ public class PlayerScript : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.S)) //shoot bullet
+        if (Input.GetKeyDown(KeyCode.Space)) //shoot bullet
         {
             GameObject bulletInstance = Instantiate(beam, projectileShooter.transform.position, projectileShooter.transform.rotation);
             bulletInstance.GetComponent<Rigidbody2D>().velocity = shooter.transform.up * bulletMagnitude;
 
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed = 5;
-            playerClouds.GetComponent<ParticleSystem>().Emit(1);
+            Debug.Log("Clicked");
+            speed = 10;
+            cam.GetComponent<PlayManager>().useStamina(10);
+            playerClouds.GetComponent<ParticleSystem>().Emit(20);
         }
         else
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayManager : MonoBehaviour
@@ -11,8 +12,13 @@ public class PlayManager : MonoBehaviour
     public TextMeshProUGUI timeTest;
     public TextMeshProUGUI pointText;
     public GameObject playStats;
+    public Slider staminaSlider;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    private int maxStamia = 100;
+    private int currentStamina;
+    private WaitForSeconds regenTick = new WaitForSeconds(0.1f);
+    private Coroutine regen;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +27,9 @@ public class PlayManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         InvokeRepeating("AddTimePoints", 1f, 1f);
+        currentStamina = maxStamia;
+        staminaSlider.maxValue = maxStamia;
+        staminaSlider.value = maxStamia;
     }
 
     // Update is called once per frame
@@ -49,6 +58,36 @@ public class PlayManager : MonoBehaviour
     public float getTime()
     {
         return startTime;
+    }
+
+    public void useStamina(int amount)
+    {
+        if(currentStamina - amount >= 0)
+        {
+            currentStamina -= amount;
+            staminaSlider.value = currentStamina;
+
+            if(regen != null)
+            {
+                StopCoroutine(regen);
+            }
+
+            regen = StartCoroutine(RegenStamina());
+        }
+    }
+
+    private IEnumerator RegenStamina()
+    {
+        yield return new WaitForSeconds(2);
+
+        while(currentStamina < maxStamia)
+        {
+            currentStamina += maxStamia / 100;
+            staminaSlider.value = currentStamina;
+            yield return regenTick;
+        }
+
+        regen = null;
     }
 
 }
