@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6026371558853001391}
   - component: {fileID: 6026371558853001388}
   - component: {fileID: 6026371558853001385}
+  - component: {fileID: -2010183442323621611}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -176,6 +177,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d36b4d4a6164c28b1364e32d4f5ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventManager: {fileID: 0}
   timeTest: {fileID: 789290345498059844, guid: 0a6a0c205c77a490fa9fed7a64a9abe9, type: 3}
+  pointText: {fileID: 8905153911832748725, guid: a03a129b7f47e4d94af08eb9d5731136,
+    type: 3}
+  playStats: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  gameOverMenu: {fileID: 0}
+--- !u!114 &-2010183442323621611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026371558853001297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad63f51ce884a496cac689916fe577e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStats: {fileID: 6874181112168837452, guid: 6481ccb3f36f149a88868eb29352668f,
+    type: 3}
+  gameOverObjects: {fileID: 4674404870947557862, guid: d14ec61e38feb4e8b80470e39b390f20,
+    type: 3}
+  cam: {fileID: 6026371558853001297}
+  timeText: {fileID: 789290345498059844, guid: 0a6a0c205c77a490fa9fed7a64a9abe9, type: 3}
   pointText: {fileID: 8905153911832748725, guid: a03a129b7f47e4d94af08eb9d5731136,
     type: 3}

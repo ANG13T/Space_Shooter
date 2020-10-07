@@ -6,9 +6,11 @@ public class PlayerScript : MonoBehaviour
 {
 
     public GameObject shooter;
+    public GameObject projectileShooter;
     public GameObject beam;
     public Transform target;
     public GameObject playerClouds;
+    public GameObject canvas;
     public float bulletMagnitude;
     private Vector2 screenBounds;
 
@@ -36,9 +38,9 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S)) //shoot bullet
         {
+            GameObject bulletInstance = Instantiate(beam, projectileShooter.transform.position, projectileShooter.transform.rotation);
+            bulletInstance.GetComponent<Rigidbody2D>().velocity = shooter.transform.up * bulletMagnitude;
 
-            GameObject bulletInstance = Instantiate(beam, shooter.gameObject.transform.position, this.gameObject.transform.rotation);
-            bulletInstance.GetComponent<Rigidbody2D>().velocity = transform.forward * bulletMagnitude;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -88,6 +90,7 @@ public class PlayerScript : MonoBehaviour
     {
         GameObject explosive = Instantiate(explosion, transform.position, Quaternion.identity);
         explosive.GetComponent<ParticleSystem>().Play();
+        FindObjectOfType<GameOverMenu>().GameOver();
     }
 
     void OnCollisionEnter2D(Collision2D col)

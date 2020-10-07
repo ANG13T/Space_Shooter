@@ -11,29 +11,29 @@ public class Beam : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(transform.position.x < -10)
+        if(transform.position.x < -screenBounds.x)
         {
             Destroy(this);
         }
 
-        if (transform.position.x > screenBounds.x + 10)
+        if (transform.position.x > screenBounds.x)
         {
             Destroy(this);
         }
 
-        if (transform.position.y < -10)
+        if (transform.position.y < -screenBounds.y)
         {
             Destroy(this);
         }
 
-        if (transform.position.y > screenBounds.y + 10)
+        if (transform.position.y > screenBounds.y)
         {
             Destroy(this);
         }

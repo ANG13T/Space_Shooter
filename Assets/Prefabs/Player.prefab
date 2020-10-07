@@ -121,6 +121,9 @@ MonoBehaviour:
   shooter: {fileID: 5134542419281424305}
   beam: {fileID: 429795650797223746, guid: febea5e1ba9ee47b69e478e45e4d0fa4, type: 3}
   target: {fileID: 0}
+  playerClouds: {fileID: 0}
+  bulletMagnitude: 0
+  cam: {fileID: 6026371558853001297, guid: 18f49e3a0e112497cb53ced2738d1792, type: 3}
   explosion: {fileID: 3620024402159181368, guid: 5ca95c4d32a3d4cadb0bea7c43362e0d,
     type: 3}
   speed: 4

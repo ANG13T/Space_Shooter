@@ -7,12 +7,19 @@ public class PlayManager : MonoBehaviour
 {
     private float startTime;
     private float points;
+    public GameObject eventManager;
     public TextMeshProUGUI timeTest;
     public TextMeshProUGUI pointText;
+    public GameObject playStats;
+    public GameObject pauseMenu;
+    public GameObject gameOverMenu;
 
     // Start is called before the first frame update
     void Start()
     {
+        playStats.SetActive(true);
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
         InvokeRepeating("AddTimePoints", 1f, 1f);
     }
 
@@ -33,4 +40,15 @@ public class PlayManager : MonoBehaviour
         points += amount;
         pointText.SetText("Points: " + points.ToString());
     }
+
+    public float getPoints()
+    {
+        return points;
+    }
+
+    public float getTime()
+    {
+        return startTime;
+    }
+
 }
