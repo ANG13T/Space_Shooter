@@ -49,7 +49,7 @@ public class PlayManager : MonoBehaviour
     void Update()
     {
         startTime += Time.deltaTime;
-        timeTest.SetText("Time: " + startTime.ToString("F2"));
+        timeTest.SetText(startTime.ToString("F2"));
     }
 
     private void AddTimePoints()
@@ -60,7 +60,7 @@ public class PlayManager : MonoBehaviour
     public void addPoints(float amount)
     {
         points += amount;
-        pointText.SetText("Points: " + points.ToString());
+        pointText.SetText(points.ToString());
     }
 
     public void addReload(int amount)
