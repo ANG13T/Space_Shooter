@@ -62,6 +62,7 @@ public class PlayManager : MonoBehaviour
 
     public void useStamina(int amount)
     {
+        Debug.Log("Using Stamina: " + amount.ToString());
         if(currentStamina - amount >= 0)
         {
             currentStamina -= amount;
@@ -74,6 +75,10 @@ public class PlayManager : MonoBehaviour
 
             regen = StartCoroutine(RegenStamina());
         }
+    }
+
+    public float getStamina() {
+        return currentStamina;
     }
 
     private IEnumerator RegenStamina()

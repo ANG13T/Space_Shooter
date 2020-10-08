@@ -6,6 +6,7 @@ public class Asteroid : MonoBehaviour
 {
     public GameObject explosion;
     public float speed = 10.0f;
+    public bool isClickable = false;
     private Rigidbody2D rb;
     public GameObject cam;
     public string type = "left";
@@ -41,6 +42,25 @@ public class Asteroid : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetMouseButton(0) && isClickable)
+        {
+            Debug.Log("Clicked on Asteroid");
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 300))
+            {
+                // whatever tag you are looking for on your game object
+                if (hit.collider.tag == "Asteroid")
+                {
+                    GameObject explosive = Instantiate(explosion, transform.position, Quaternion.identity);
+                    explosive.GetComponent<ParticleSystem>().Play();
+                    Destroy(this.gameObject);
+                }
+            }
+            
+        }
+
         if (rb.position.x < -20)
         {
             Destroy(this.gameObject);
@@ -62,6 +82,7 @@ public class Asteroid : MonoBehaviour
         }
 
     }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {

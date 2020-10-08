@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerClouds;
     public GameObject canvas;
     public GameObject cam;
+    public int boostSpeed = 6;
     public float bulletMagnitude;
     private Vector2 screenBounds;
 
@@ -44,12 +45,20 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("Clicked");
-            speed = 10;
-            cam.GetComponent<PlayManager>().useStamina(10);
-            playerClouds.GetComponent<ParticleSystem>().Emit(20);
+            PlayManager playManager = FindObjectOfType<PlayManager>();
+            if (playManager.getStamina() - 5 >= 0)
+            {
+                speed = boostSpeed;
+                playerClouds.GetComponent<ParticleSystem>().Emit(20);
+                playManager.useStamina(1);
+            }else{
+                playerClouds.GetComponent<ParticleSystem>().Stop();
+                speed = 3;
+            }
+
+
         }
         else
         {

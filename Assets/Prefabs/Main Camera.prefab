@@ -181,9 +181,14 @@ MonoBehaviour:
   timeTest: {fileID: 789290345498059844, guid: 0a6a0c205c77a490fa9fed7a64a9abe9, type: 3}
   pointText: {fileID: 8905153911832748725, guid: a03a129b7f47e4d94af08eb9d5731136,
     type: 3}
-  playStats: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
+  playStats: {fileID: 6874181112168837452, guid: 6481ccb3f36f149a88868eb29352668f,
+    type: 3}
+  staminaSlider: {fileID: 6097508299414713094, guid: 8312dd6cb21ef4692900f3a976914fbc,
+    type: 3}
+  pauseMenu: {fileID: 1413701465394105058, guid: 5abcc776f308449588abaa77183c142c,
+    type: 3}
+  gameOverMenu: {fileID: 4674404870947557862, guid: d14ec61e38feb4e8b80470e39b390f20,
+    type: 3}
 --- !u!114 &-2010183442323621611
 MonoBehaviour:
   m_ObjectHideFlags: 0
