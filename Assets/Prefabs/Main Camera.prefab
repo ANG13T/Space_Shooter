@@ -181,6 +181,8 @@ MonoBehaviour:
   timeTest: {fileID: 789290345498059844, guid: 0a6a0c205c77a490fa9fed7a64a9abe9, type: 3}
   pointText: {fileID: 8905153911832748725, guid: a03a129b7f47e4d94af08eb9d5731136,
     type: 3}
+  ammoText: {fileID: 0}
+  ammoCapacity: 0
   playStats: {fileID: 6874181112168837452, guid: 6481ccb3f36f149a88868eb29352668f,
     type: 3}
   staminaSlider: {fileID: 6097508299414713094, guid: 8312dd6cb21ef4692900f3a976914fbc,
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad63f51ce884a496cac689916fe577e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStats: {fileID: 6874181112168837452, guid: 6481ccb3f36f149a88868eb29352668f,
+  gameStats: {fileID: 3820768211815054285, guid: 6481ccb3f36f149a88868eb29352668f,
     type: 3}
   gameOverObjects: {fileID: 4674404870947557862, guid: d14ec61e38feb4e8b80470e39b390f20,
     type: 3}

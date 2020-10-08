@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerClouds;
     public GameObject canvas;
     public GameObject cam;
+    PlayManager playManager;
     public int boostSpeed = 6;
     public float bulletMagnitude;
     private Vector2 screenBounds;
@@ -31,6 +32,8 @@ public class PlayerScript : MonoBehaviour
         Debug.Log(Screen.width);
         Debug.Log(Screen.height);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        playManager = FindObjectOfType<PlayManager>();
+
     }
 
     // Update is called once per frame
@@ -38,16 +41,22 @@ public class PlayerScript : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Space)) //shoot bullet
+        if (Input.GetKeyDown(KeyCode.Space) && playManager.hasAmmo()) //shoot bullet
         {
             GameObject bulletInstance = Instantiate(beam, projectileShooter.transform.position, projectileShooter.transform.rotation);
             bulletInstance.GetComponent<Rigidbody2D>().velocity = shooter.transform.up * bulletMagnitude;
+            playManager.useAmmo(1);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //reload
         }
 
         if (Input.GetMouseButton(0))
         {
-            PlayManager playManager = FindObjectOfType<PlayManager>();
+            
             if (playManager.getStamina() - 5 >= 0)
             {
                 speed = boostSpeed;

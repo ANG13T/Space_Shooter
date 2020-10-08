@@ -11,6 +11,9 @@ public class PlayManager : MonoBehaviour
     public GameObject eventManager;
     public TextMeshProUGUI timeTest;
     public TextMeshProUGUI pointText;
+    public TextMeshProUGUI ammoText;
+    public int ammoCapacity;
+    private int ammoAmount;
     public GameObject playStats;
     public Slider staminaSlider;
     public GameObject pauseMenu;
@@ -30,6 +33,10 @@ public class PlayManager : MonoBehaviour
         currentStamina = maxStamia;
         staminaSlider.maxValue = maxStamia;
         staminaSlider.value = maxStamia;
+        ammoAmount = ammoCapacity;
+        updateAmmoText();
+
+
     }
 
     // Update is called once per frame
@@ -60,6 +67,11 @@ public class PlayManager : MonoBehaviour
         return startTime;
     }
 
+    private void updateAmmoText()
+    {
+        ammoText.SetText(ammoAmount.ToString() + " / " + ammoCapacity.ToString());
+    }
+
     public void useStamina(int amount)
     {
         Debug.Log("Using Stamina: " + amount.ToString());
@@ -75,6 +87,17 @@ public class PlayManager : MonoBehaviour
 
             regen = StartCoroutine(RegenStamina());
         }
+    }
+
+    public bool hasAmmo()
+    {
+        return ammoAmount > 0;
+    }
+
+    public void useAmmo(int amount)
+    {
+        ammoAmount -= amount;
+        updateAmmoText();
     }
 
     public float getStamina() {
