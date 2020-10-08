@@ -15,10 +15,13 @@ public class PlayManager : MonoBehaviour
     public int ammoCapacity;
     private int ammoAmount;
     public GameObject playStats;
+    public GameObject reloadContainer;
     public Slider staminaSlider;
+    public Slider reloadingSlider;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     private int maxStamia = 100;
+    private int reloadAmount;
     private int currentStamina;
     private WaitForSeconds regenTick = new WaitForSeconds(0.1f);
     private Coroutine regen;
@@ -26,6 +29,7 @@ public class PlayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        reloadContainer.SetActive(false);
         playStats.SetActive(true);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
@@ -33,6 +37,8 @@ public class PlayManager : MonoBehaviour
         currentStamina = maxStamia;
         staminaSlider.maxValue = maxStamia;
         staminaSlider.value = maxStamia;
+        reloadingSlider.value = 0;
+        reloadingSlider.maxValue = 100;
         ammoAmount = ammoCapacity;
         updateAmmoText();
 
@@ -57,6 +63,24 @@ public class PlayManager : MonoBehaviour
         pointText.SetText("Points: " + points.ToString());
     }
 
+    public void addReload(int amount)
+    {
+        reloadAmount += amount;
+        if (reloadAmount >= 100)
+        {
+            reloadContainer.SetActive(false);
+            reloadingSlider.value = 0;
+            reloadAmount = 0;
+            ammoAmount = ammoCapacity;
+            updateAmmoText();
+        }
+        else
+        {
+            reloadingSlider.value = reloadAmount;
+        }
+        
+    }
+
     public float getPoints()
     {
         return points;
@@ -65,6 +89,11 @@ public class PlayManager : MonoBehaviour
     public float getTime()
     {
         return startTime;
+    }
+
+    public void showReloadScreen()
+    {
+        reloadContainer.SetActive(true);
     }
 
     private void updateAmmoText()
@@ -98,6 +127,11 @@ public class PlayManager : MonoBehaviour
     {
         ammoAmount -= amount;
         updateAmmoText();
+        if (!hasAmmo())
+        {
+            reloadAmount = 0;
+            reloadingSlider.value = 0;
+        }
     }
 
     public float getStamina() {

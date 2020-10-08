@@ -49,10 +49,13 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && !playManager.hasAmmo())
         {
             //reload
-        }
+            playManager.showReloadScreen();
+            playManager.addReload(2);
+
+        } 
 
         if (Input.GetMouseButton(0))
         {
