@@ -27,8 +27,8 @@ public class GameOverMenu : MonoBehaviour
         Debug.Log("Game Over!!!");
         float finalTime = cam.GetComponent<PlayManager>().getTime();
         float finalPoints = cam.GetComponent<PlayManager>().getPoints();
-        timeText.SetText("Time: " + finalTime.ToString("F2"));
-        pointText.SetText("Points: " + finalPoints.ToString());
+        timeText.SetText(finalTime.ToString("F2"));
+        pointText.SetText(finalPoints.ToString());
         Time.timeScale = 0f;
     }
 

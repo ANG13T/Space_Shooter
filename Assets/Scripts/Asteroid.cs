@@ -42,25 +42,6 @@ public class Asteroid : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButton(0) && isClickable)
-        {
-            Debug.Log("Clicked on Asteroid");
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 300))
-            {
-                // whatever tag you are looking for on your game object
-                if (hit.collider.tag == "Asteroid")
-                {
-                    GameObject explosive = Instantiate(explosion, transform.position, Quaternion.identity);
-                    explosive.GetComponent<ParticleSystem>().Play();
-                    Destroy(this.gameObject);
-                }
-            }
-            
-        }
-
         if (rb.position.x < -20)
         {
             Destroy(this.gameObject);
@@ -83,6 +64,17 @@ public class Asteroid : MonoBehaviour
 
     }
 
+    private void OnMouseDown()
+    {
+        if (isClickable)
+        {
+            GameObject explosive = Instantiate(explosion, transform.position, Quaternion.identity);
+            explosive.GetComponent<ParticleSystem>().Play();
+            Destroy(this.gameObject);
+        }
+        
+    }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -91,7 +83,7 @@ public class Asteroid : MonoBehaviour
         {
             GameObject explosive = Instantiate(explosion, transform.position, Quaternion.identity);
             explosive.GetComponent<ParticleSystem>().Play();
-            cam.GetComponent<PlayManager>().addPoints(5);
+            FindObjectOfType<PlayManager>().addPoints(5);
             Destroy(col.gameObject);
             Destroy(this.gameObject);
         }

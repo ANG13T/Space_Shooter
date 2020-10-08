@@ -26,11 +26,11 @@ public class deployAsteroids : MonoBehaviour
         switch (mode)
         {
             case "left":
-                range = new Vector3(-10, Random.Range(-screenBounds.y, screenBounds.y), -2);
+                range = new Vector3(screenBounds.x + 10, Random.Range(-screenBounds.y, screenBounds.y), -2);
                 break;
 
             case "right":
-                range = new Vector3(screenBounds.x + 10, Random.Range(-screenBounds.y, screenBounds.y), -2);
+                range = new Vector3(-10, Random.Range(-screenBounds.y, screenBounds.y), -2);
                 break;
 
             case "top":
